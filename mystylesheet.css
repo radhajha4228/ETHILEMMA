@@ -3,9 +3,19 @@ body {
     font-family: 'Arial', 'Times New Roman', serif;
     margin: 10px;
     padding: 10px;
+            background-image: url('background.jpg');
+
+            background-size: cover;
+
+            background-position: center;
+
+            background-repeat: no-repeat;
+
+            background-attachment: fixed;
+
     background-color: #daeaf6;
     color: #333;
-    transition: background-color 0.5s ease;
+    transition: background-color 0.75s ease;
 }
 
 /* Navigation Bar */
@@ -23,7 +33,7 @@ body {
     padding: 12px 18px;
     text-decoration: none;
     font-weight: bold;
-    transition: background-color 0.3s ease;
+    transition: background-color 0.8s ease;
 }
 
 .navbar a:hover {
@@ -79,3 +89,4 @@ body {
     0% { transform: translateY(100%); }
     100% { transform: translateY(0); }
 }
+
