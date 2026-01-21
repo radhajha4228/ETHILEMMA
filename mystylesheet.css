@@ -50,12 +50,16 @@ body {
     font-size: 24px;
     font-family: 'Times New Roman', serif;
     text-align: left;
-    background-color: #d4afb9;
+    background-color: #d4afb9; /* fallback */
+    background-image: url('chapters-bg.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
     color: #222;
     padding: 15px;
     border-radius: 10px;
     margin-bottom: 20px;
-    transition: transform 0.3s ease;
+    transition: transform 0.5s ease;
 }
 
 .chapters:hover {
@@ -85,6 +89,7 @@ body {
     0% { transform: translateY(100%); }
     100% { transform: translateY(0); }
 }
+
 
 
 
