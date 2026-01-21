@@ -37,6 +37,8 @@ body {
 }
 
 .navbar a:hover {
+    
+    background-image: url('menu-bg.jpg');
     background-color: #7ec4cf;
     color: #fff;
 }
@@ -92,6 +94,7 @@ body {
     0% { transform: translateY(100%); }
     100% { transform: translateY(0); }
 }
+
 
 
 
