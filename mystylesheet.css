@@ -47,10 +47,9 @@ body {
 
 /* Chapters Section */
 .chapters {
-    font-size: 24px;
+    font-size: 28px;
     font-family: 'Times New Roman', serif;
     text-align: left;
-    background-color: #d4afb9; /* fallback */
     background-image: url('chapters-bg.jpg');
     background-size: cover;
     background-position: center;
@@ -89,6 +88,7 @@ body {
     0% { transform: translateY(100%); }
     100% { transform: translateY(0); }
 }
+
 
 
 
