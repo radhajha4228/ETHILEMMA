@@ -24,7 +24,7 @@
 
     <p>
         Share an ethical situation and your personal viewpoint.
-        This platform is meant for reflection and discussion, not advice.
+        This platform is meant for reflection and discussion, not policing each other.
     </p>
 
     <form onsubmit="return validateForm()">
@@ -66,26 +66,26 @@ function validateForm() {
     var opinion = document.getElementById("opinion").value.trim();
 
     if (name === "" || email === "" || question === "" || opinion === "") {
-        document.getElementById("v").innerHTML = "All fields are required.";
+        document.getElementById("v").innerHTML = "All fields are required.⚠️";
         return false;
     }
 
     if (email.indexOf("@") === -1 || email.indexOf(".") === -1) {
-        document.getElementById("v").innerHTML = "Please enter a valid email address.";
+        document.getElementById("v").innerHTML = "Please enter a valid email address.⚠️";
         return false;
     }
 
     if (question.length < 20) {
-        document.getElementById("v").innerHTML = "Ethical question must be at least 20 characters.";
+        document.getElementById("v").innerHTML = "Ethical question must be at least 20 characters.⚠️";
         return false;
     }
 
     if (opinion.length < 20) {
-        document.getElementById("v").innerHTML = "Opinion must be at least 20 characters.";
+        document.getElementById("v").innerHTML = "Opinion must be at least 20 characters.⚠️";
         return false;
     }
 
-    alert("Your ethical submission has been recorded.");
+    alert("Your ethical submission has been recorded.💮");
     return true;
 }
 </script>
