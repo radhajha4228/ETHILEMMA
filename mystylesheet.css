@@ -54,7 +54,7 @@ body {
     font-size: 28px;
     font-family: 'Times New Roman', serif;
     text-align: left;
-    background-image: url('chapters-bg.jpg');
+    background-image: url('chapter--bg.jpg');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -92,6 +92,7 @@ body {
     0% { transform: translateY(100%); }
     100% { transform: translateY(0); }
 }
+
 
 
 
