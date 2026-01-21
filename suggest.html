@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Ethilemma | Ethical Discussions</title>
+    <link rel="stylesheet" href="mystylesheet.css">
+</head>
+
+<body>
+
+<!-- Navigation Bar -->
+<div class="navbar">
+    <a href="index.html">Home</a>
+    <a href="view_questions.html">Discussions</a>
+    <a href="ask.html">Ask</a>
+    <a href="about.html">About</a>
+</div>
+
+<!-- Main Content -->
+<div class="main-content">
+
+    <div class="chapters">
+        Ethical Questions & Opinions
+    </div>
+
+    <!-- Question 1 -->
+    <div class="question-box">
+        <h3>Question:</h3>
+        <p>
+            Is it ethical to lie if it prevents someone from getting hurt emotionally?
+        </p>
+
+        <h4>Share Your Opinion:</h4>
+        <form onsubmit="return validateResponse('r1','e1')">
+            <textarea id="r1" rows="4" cols="40"></textarea><br><br>
+            <button type="submit">Submit Opinion</button>
+            <p id="e1" style="color:red;"></p>
+        </form>
+    </div>
+
+    <hr>
+
+    <!-- Question 2 -->
+    <div class="question-box">
+        <h3>Question:</h3>
+        <p>
+            Should personal freedom be limited for the greater good of society?
+        </p>
+
+        <h4>Share Your Opinion:</h4>
+        <form onsubmit="return validateResponse('r2','e2')">
+            <textarea id="r2" rows="4" cols="40"></textarea><br><br>
+            <button type="submit">Submit Opinion</button>
+            <p id="e2" style="color:red;"></p>
+        </form>
+    </div>
+
+</div>
+
+<!-- Footer -->
+<div class="footer">
+    <small>
+        Ethilemma is a platform for ethical discussion and reflection only.
+    </small>
+</div>
+
+<script>
+function validateResponse(textId, errorId) {
+
+    var response = document.getElementById(textId).value.trim();
+
+    if (response === "") {
+        document.getElementById(errorId).innerHTML = "Response cannot be empty.";
+        return false;
+    }
+
+    if (response.length < 20) {
+        document.getElementById(errorId).innerHTML =
+            "Response must be at least 20 characters.";
+        return false;
+    }
+
+    alert("Your opinion has been submitted.");
+    return true;
+}
+</script>
+
+</body>
+</html>
