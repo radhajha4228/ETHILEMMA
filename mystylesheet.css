@@ -16,7 +16,6 @@ body {
 
 /* Navigation Bar */
 .navbar {
-    background-color: #9cadce; /* fallback if image fails */
     background-image: url('menu-bg.jpg');
     background-size: cover;
     background-position: center;
@@ -92,6 +91,7 @@ body {
     0% { transform: translateY(100%); }
     100% { transform: translateY(0); }
 }
+
 
 
 
