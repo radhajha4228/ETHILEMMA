@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Ethilemma | Ethical Question Submission</title>
+    <link rel="stylesheet" href="mystylesheet.css">
+</head>
+
+<body>
+
+<!-- Navigation Bar -->
+<div class="navbar">
+    <a href="index.html">Home</a>
+    <a href="dilemmas.html">Dilemmas</a>
+    <a href="ask.html">Ask</a>
+    <a href="about.html">About</a>
+</div>
+
+<!-- Main Content -->
+<div class="main-content">
+
+    <div class="chapters">
+        Ethical Question Submission
+    </div>
+
+    <p>
+        Share an ethical situation and your personal viewpoint.
+        This platform is meant for reflection and discussion, not advice.
+    </p>
+
+    <form onsubmit="return validateForm()">
+
+        <label>Name:</label><br>
+        <input type="text" id="name"><br><br>
+
+        <label>Email:</label><br>
+        <input type="text" id="email"><br><br>
+
+        <label>Ethical Situation / Question:</label><br>
+        <textarea id="question" rows="5" cols="40"></textarea><br><br>
+
+        <label>Your Opinion / Response:</label><br>
+        <textarea id="opinion" rows="5" cols="40"></textarea><br><br>
+
+        <button type="submit">Submit</button>
+
+    </form>
+
+    <p id="v" style="color:red;"></p>
+
+</div>
+
+<!-- Footer -->
+<div class="footer">
+    <small>
+        Disclaimer: Ethilemma is a platform for ethical discussion only.
+        It does not provide legal or professional advice.
+    </small>
+</div>
+
+<script>
+function validateForm() {
+
+    var name = document.getElementById("name").value.trim();
+    var email = document.getElementById("email").value.trim();
+    var question = document.getElementById("question").value.trim();
+    var opinion = document.getElementById("opinion").value.trim();
+
+    if (name === "" || email === "" || question === "" || opinion === "") {
+        document.getElementById("v").innerHTML = "All fields are required.";
+        return false;
+    }
+
+    if (email.indexOf("@") === -1 || email.indexOf(".") === -1) {
+        document.getElementById("v").innerHTML = "Please enter a valid email address.";
+        return false;
+    }
+
+    if (question.length < 20) {
+        document.getElementById("v").innerHTML = "Ethical question must be at least 20 characters.";
+        return false;
+    }
+
+    if (opinion.length < 20) {
+        document.getElementById("v").innerHTML = "Opinion must be at least 20 characters.";
+        return false;
+    }
+
+    alert("Your ethical submission has been recorded.");
+    return true;
+}
+</script>
+
+</body>
+</html>
