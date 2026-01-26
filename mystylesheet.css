@@ -7,67 +7,74 @@ body {
     background-position: center;
     background-repeat: no-repeat;
     background-attachment: fixed;
-    color: #2c2c2c;
+    color: #2e3a3f;
+    animation: fadeIn 1.2s ease-in;
 }
 
 /* Navigation Bar */
 .navbar {
     min-height: 60px;
-    background-image: linear-gradient(
-        rgba(20, 40, 60, 0.85),
-        rgba(20, 40, 60, 0.85)
-    ),
-    url('menu-bg.jpg');
+    background-image: url('menu-bg.jpg');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
     overflow: hidden;
-    box-shadow: 0 8px 25px rgba(0,0,0,0.25);
-    backdrop-filter: blur(6px);
+    box-shadow: 0 6px 18px rgba(0,0,0,0.25);
     transition: all 0.4s ease;
 }
 
 .navbar a {
     float: left;
     display: block;
-    color: #eaf6f8;
+    color: #eaf4f6;
     text-align: left;
-    padding: 14px 20px;
-    text-decoration: none;
-    font-weight: 600;
-    letter-spacing: 0.5px;
-    transition: all 0.35s ease;
-    position: relative;
+    padding: 12px 18px;
+    text-decoration: none; /* fixed, not reinvented */
+    font-weight: bold;
+    transition: all 0.3s ease;
 }
 
-/* subtle underline animation */
-.navbar a::after {
-    content: "";
-    position: absolute;
-    width: 0%;
-    height: 2px;
-    background-color: #7ec4cf;
-    bottom: 6px;
-    left: 20px;
-    transition: width 0.35s ease;
-}
-
-.navbar a:hover::after {
-    width: 60%;
-}
-
+/* Hover effect kept simple and calm */
 .navbar a:hover {
+    background-color: rgba(126, 196, 207, 0.35);
     color: #ffffff;
-    background-color: rgba(126, 196, 207, 0.15);
+    transform: translateY(-2px);
 }
 
 /* Main Content */
 .main-content {
     padding: 30px;
-    background-color: rgba(255,255,255,0.85);
-    border-radius: 14px;
-    box-shadow: 0 12px 30px rgba(0,0,0,0.15);
-    animation: fadeUp 1s ease forwards;
+    background-color: rgba(255, 255, 255, 0.88);
+    border-radius: 12px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.18);
+    animation: slideUp 1s ease forwards;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.main-content:hover {
+    transform: scale(1.01);
+    box-shadow: 0 14px 32px rgba(0,0,0,0.25);
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 /* entrance animation */
@@ -82,6 +89,7 @@ body {
     }
 }
     
+
 
 
 
