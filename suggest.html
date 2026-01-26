@@ -6,48 +6,67 @@
 </head>
 <body>
 
-<h1>Ethilemma: Share Your Thoughtful Suggestions</h1>
-
-<div class="navbar">
-    <a href="index.html">Home</a>
-    <a href="dilemmas.html">Dilemmas</a>
-    <a href="suggest.html">Suggestions</a>
-</div>
-
-<div class="chapters">
-    <p>Provide suggestions for dilemmas anonymously and thoughtfully.</p>
-</div>
+<h1>Ethilemma: Share Your Thoughtful Suggestions</h1><h1>Ethilemma: Share Thoughtful Suggestions</h1>
 
 <div class="main-content">
-    <h2>Make a Suggestion 🌸</h2>
+    <h2>Select a Dilemma to Suggest On 🌸</h2>
+
+    <select id="dilemmaSelect"></select><br><br>
+
     <textarea id="suggestText" rows="6" placeholder="Write your suggestion here..."></textarea><br><br>
     <button onclick="submitSuggestion()">Submit Suggestion</button>
 </div>
 
-<div class="footer">
-    Keep your suggestions calm, respectful, and reflective.
-</div>
-
 <script src="STYLE.js"></script>
 <script>
-function submitSuggestion() {
-    const text = document.getElementById("suggestText").value.trim();
-
-    if(text === "") {
-        alert("Please write something before submitting.");
-        return;
+// Fetch dilemmas on load
+async function loadDilemmas() {
+    const res = await fetch("https://yourhost.com/get_dilemmas.php");
+    const data = await res.json();
+    const select = document.getElementById("dilemmaSelect");
+    if(data.success){
+        data.dilemmas.forEach(d => {
+            const option = document.createElement("option");
+            option.value = d.id;
+            option.textContent = d.text.length>60 ? d.text.substring(0,60)+"..." : d.text;
+            select.appendChild(option);
+        });
+    } else {
+        alert("Failed to load dilemmas.");
     }
-
-    if(containsBannedWords(text)) {
-        alert("Unethical or abusive language detected. Please revise your message.");
-        return;
-    }
-
-    // Gentle interaction feedback
-    alert("Thank you for sharing your suggestion 🌿");
-    document.getElementById("suggestText").value = "";
 }
-</script>
+
+// Submit suggestion
+async function submitSuggestion() {
+    const text = document.getElementById("suggestText").value.trim();
+    const dilemma_id = document.getElementById("dilemmaSelect").value;
+
+    if(text.length<5){
+        alert("Please write a proper suggestion (min 5 chars).");
+        return;
+    }
+
+    if(containsBannedWords(text)){
+        alert("Unethical language detected. Revise your message.");
+        return;
+    }
+
+    const formData = new URLSearchParams();
+    formData.append("text",text);
+    formData.append("dilemma_id",dilemma_id);
+
+    const res = await fetch("https://yourhost.com/submit_suggestion.php",{
+        method:"POST",
+        body: formData
+    });
+
+    const result = await res.json();
+    alert(result.message);
+    if(result.success) document.getElementById("suggestText").value="";
+}
+
+window.onload = loadDilemmas;
+        </script>
 
 </body>
 </html>
