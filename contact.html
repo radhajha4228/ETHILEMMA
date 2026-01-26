@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ethilemma | Designer Profile</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Quicksand:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --accent: #ff85a1; /* Cute Pink */
+            --bg-grad: linear-gradient(120deg, #fdfbfb 0%, #ebedee 100%);
+            --card-bg: rgba(255, 255, 255, 0.9);
+        }
+
+        body {
+            background: #ffdae0;
+            background-image: 
+                radial-gradient(circle at 20% 30%, #fff0f3 0%, transparent 20%),
+                radial-gradient(circle at 80% 70%, #f3d5ff 0%, transparent 20%);
+            font-family: 'Quicksand', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            overflow-x: hidden;
+        }
+
+        .container {
+            position: relative;
+            z-index: 1;
+        }
+
+        /* The Card */
+        .card {
+            background: var(--card-bg);
+            backdrop-filter: blur(10px);
+            width: 380px;
+            padding: 50px 30px 40px;
+            border-radius: 40px;
+            text-align: center;
+            box-shadow: 0 20px 40px rgba(255, 133, 161, 0.15);
+            border: 6px solid white;
+            animation: float 5s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-15px); }
+        }
+
+        /* IMAGE SECTION */
+        .profile-container {
+            position: relative;
+            width: 140px;
+            height: 140px;
+            margin: -110px auto 20px; /* Pulls image upward */
+        }
+
+        .profile-img {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 6px solid white;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+            background: #eee; /* Fallback color */
+        }
+
+        .badge {
+            position: absolute;
+            bottom: 5px;
+            right: 5px;
+            background: var(--accent);
+            color: white;
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border: 3px solid white;
+            font-size: 14px;
+        }
+
+        h1 {
+            font-family: 'Fredoka One', cursive;
+            color: var(--accent);
+            margin: 10px 0 5px;
+            font-size: 1.8rem;
+        }
+
+        .subtitle {
+            font-size: 0.9rem;
+            color: #999;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 20px;
+            display: block;
+            text-decoration: none;
+        }
+
+        .message-bubble {
+            background: #fff5f7;
+            padding: 20px;
+            border-radius: 25px;
+            font-size: 0.95rem;
+            line-height: 1.5;
+            color: #666;
+            margin-bottom: 25px;
+            border: 2px dashed #ffdae0;
+        }
+
+        /* Social Buttons */
+        .socials {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+        }
+
+        .btn {
+            width: 55px;
+            height: 55px;
+            border-radius: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-decoration: none;
+            font-size: 1.4rem;
+            transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            background: white;
+            color: var(--accent);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+
+        .btn:hover {
+            transform: scale(1.1) rotate(5deg);
+            background: var(--accent);
+            color: white;
+        }
+
+        .github:hover { background: #333; }
+        .insta:hover { background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%,#d6249f 60%,#285AEB 90%); }
+        .mail:hover { background: #ffcc00; color: #333; }
+
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="card">
+            <div class="profile-container">
+                <img src="https://via.placeholder.com/150" alt="Radha Jha" class="profile-img">
+                <div class="badge"><i class="fas fa-magic"></i></div>
+            </div>
+
+            <h1>Radha Jha</h1>
+            <a href="https://radhajha4228.github.io/ETHILEMMA/" class="subtitle">Ethilemma Project <i class="fas fa-link"></i></a>
+
+            <div class="message-bubble">
+                "Hi there! I'm the creator of Ethilemma. I believe the web should be both ethical and beautiful. Thanks for stopping by my tiny corner of the internet! ✨"
+            </div>
+
+            <div class="socials">
+                <a href="#" class="btn insta" title="Instagram"><i class="fab fa-instagram"></i></a>
+                <a href="https://github.com/radhajha4228" class="btn github" title="GitHub"><i class="fab fa-github"></i></a>
+                <a href="mailto:your-email@example.com" class="btn mail" title="Email Me"><i class="fas fa-envelope"></i></a>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
