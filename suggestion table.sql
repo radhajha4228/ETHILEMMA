@@ -1,0 +1,7 @@
+CREATE TABLE suggestions (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    dilemma_id INT NOT NULL,
+    text TEXT NOT NULL,
+    date_submitted TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (dilemma_id) REFERENCES dilemmas(id) ON DELETE CASCADE
+);
