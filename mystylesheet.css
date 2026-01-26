@@ -17,11 +17,17 @@ body {
 /* Navigation Bar */
 .navbar {
     min-height:60px
+        
     background-image: url('menu-bg.jpg');
+    
     background-size: cover;
+    
     background-position: center;
+    
     background-repeat: no-repeat;
+    
     overflow: hidden;
+    
     box-shadow: 0 2px 5px rgba(0,0,0,0.1);
 }
 
@@ -31,7 +37,7 @@ body {
     color: #fff;
     text-align: left;
     padding: 12px 18px;
-    text-decoration: none;
+    text-decoration: olive green;
     font-weight: bold;
     transition: background-color 0.8s ease;
 }
@@ -39,15 +45,20 @@ body {
 .navbar a:hover {
     
     background-image: url('menu-bg.jpg');
+    
     background-color: #7ec4cf;
+    
     color: #fff;
 }
 
 /* Main Content */
 .main-content {
     padding: 30px;
+    
     background-color: #808000
+        
     border-radius: 30px;
+    
     animation: fadeIn 4s ease-in;
 }
 
@@ -94,6 +105,7 @@ body {
     0% { transform: translateY(100%); }
     100% { transform: translateY(0); }
 }
+
 
 
 
