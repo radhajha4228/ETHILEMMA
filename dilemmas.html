@@ -29,8 +29,7 @@
 </div>
 
 <script src="STYLE.js"></script>
-<script>
-function submitDilemma() {
+<script>function submitDilemma() {
     const text = document.getElementById("dilemmaText").value.trim();
 
     if(text.length < 20) {
@@ -43,8 +42,18 @@ function submitDilemma() {
         return;
     }
 
-    alert("Your dilemma has been submitted respectfully 🌸");
-    document.getElementById("dilemmaText").value = "";
+    // Send to backend
+    fetch("https://yourhost.com/submit_dilemma.php", {
+        method: "POST",
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        body: `text=${encodeURIComponent(text)}`
+    })
+    .then(res => res.json())
+    .then(data => {
+        alert(data.message);
+        if(data.success) document.getElementById("dilemmaText").value = "";
+    })
+    .catch(() => alert("Submission failed. Please try again later."));
 }
 </script>
 
