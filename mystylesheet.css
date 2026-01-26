@@ -45,10 +45,10 @@ body {
 
 /* Main Content */
 .main-content {
-    padding: 20px;
+    padding: 30px;
     background-color: #d1cfe2;
-    border-radius: 10px;
-    animation: fadeIn 1s ease-in;
+    border-radius: 30px;
+    animation: fadeIn 4s ease-in;
 }
 
 /* Chapters Section */
@@ -94,6 +94,7 @@ body {
     0% { transform: translateY(100%); }
     100% { transform: translateY(0); }
 }
+
 
 
 
