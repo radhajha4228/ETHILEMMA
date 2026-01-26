@@ -1,61 +1,85 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <meta charset="UTF-8">
     <title>Ethilemma | Dilemmas</title>
     <link rel="stylesheet" href="mystylesheet.css">
 </head>
 <body>
+    <h1>Ethilemma: Share Your Dilemma 🌿</h1>
 
-<h1>Ethilemma: Share Your Dilemma</h1>
+    <!-- Navbar -->
+    <div class="navbar">
+        <a href="index.html">Home</a>
+        <a href="dilemmas.html">Dilemmas</a>
+        <a href="suggest.html">Suggestions</a>
+        <a href="feedback.html">Feedback</a>
+        <a href="contact.html">Contact</a>
+        <a href="material.html">Materials</a>
+    </div>
 
-<div class="navbar">
-    <a href="index.html">Home</a>
-    <a href="dilemmas.html">Dilemmas</a>
-    <a href="suggest.html">Suggestions</a>
-</div>
+    <div class="chapters">
+        <p>Pour down your ethical or social dilemma anonymously. Others can reflect and suggest respectfully.</p>
+    </div>
 
-<div class="chapters">
-    <p>Pour down your ethical or social dilemma anonymously. Others can reflect and suggest respectfully.</p>
-</div>
+    <div class="main-content">
+        <h2>Submit a Dilemma 🌸</h2>
+        <textarea id="dilemmaText" rows="6" placeholder="Describe your dilemma here..."></textarea><br><br>
+        <button onclick="submitDilemma()">Submit Dilemma</button>
+        <p id="feedbackMsg" style="color: #d9534f;"></p>
+    </div>
 
-<div class="main-content">
-    <h2>Submit a Dilemma 🌿</h2>
-    <textarea id="dilemmaText" rows="6" placeholder="Describe your dilemma here..."></textarea><br><br>
-    <button onclick="submitDilemma()">Submit Dilemma</button>
-</div>
+    <div class="footer">
+        Reflect, share, and explore ideas peacefully.
+    </div>
 
-<div class="footer">
-    Reflect, share, and explore ideas peacefully.
-</div>
+    <script src="STYLE.js"></script>
+    <script>
+        // Banned words list (same as backend)
+        const bannedWords = ["bitch","slut","kill yourself","die","better you die","idiot","stupid"];
 
-<script src="STYLE.js"></script>
-<script>function submitDilemma() {
-    const text = document.getElementById("dilemmaText").value.trim();
+        function containsBannedWords(text){
+            return bannedWords.some(word => text.toLowerCase().includes(word));
+        }
 
-    if(text.length < 20) {
-        alert("Please explain your dilemma clearly (minimum 20 characters).");
-        return;
-    }
+        async function submitDilemma(){
+            const text = document.getElementById("dilemmaText").value.trim();
+            const feedback = document.getElementById("feedbackMsg");
 
-    if(containsBannedWords(text)) {
-        alert("Please remove unethical or abusive language before submitting.");
-        return;
-    }
+            feedback.textContent = "";
 
-    // Send to backend
-    fetch("https://yourhost.com/submit_dilemma.php", {
-        method: "POST",
-        headers: { "Content-Type": "application/x-www-form-urlencoded" },
-        body: `text=${encodeURIComponent(text)}`
-    })
-    .then(res => res.json())
-    .then(data => {
-        alert(data.message);
-        if(data.success) document.getElementById("dilemmaText").value = "";
-    })
-    .catch(() => alert("Submission failed. Please try again later."));
-}
-</script>
+            if(text.length < 20){
+                feedback.textContent = "Please explain your dilemma clearly (minimum 20 characters).";
+                return;
+            }
+            if(containsBannedWords(text)){
+                feedback.textContent = "Unethical language detected. Revise your message.";
+                return;
+            }
 
+            try {
+                const formData = new URLSearchParams();
+                formData.append("text", text);
+
+                const res = await fetch("submit_dilemma.php", {
+                    method: "POST",
+                    body: formData
+                });
+
+                const result = await res.json();
+                feedback.textContent = result.message;
+                if(result.success){
+                    document.getElementById("dilemmaText").value = "";
+                    feedback.style.color = "#2e7d32"; // green for success
+                } else {
+                    feedback.style.color = "#d9534f"; // red for error
+                }
+
+            } catch (e){
+                feedback.textContent = "Submission failed. Try again later.";
+                feedback.style.color = "#d9534f";
+            }
+        }
+    </script>
 </body>
 </html>
