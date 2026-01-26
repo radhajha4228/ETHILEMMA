@@ -6,22 +6,26 @@
 </head>
 <body>
 
+<h1>Ethilemma: Share Your Thoughtful Suggestions</h1>
+
 <div class="navbar">
     <a href="index.html">Home</a>
     <a href="dilemmas.html">Dilemmas</a>
     <a href="suggest.html">Suggestions</a>
 </div>
 
-<div class="main-content">
-    <h2>Learn Situations & Suggest</h2>
-    <p>Share your thoughts respectfully.</p>
+<div class="chapters">
+    <p>Provide suggestions for dilemmas anonymously and thoughtfully.</p>
+</div>
 
-    <textarea id="suggestText" rows="5"></textarea><br><br>
-    <button onclick="submitSuggestion()">Submit</button>
+<div class="main-content">
+    <h2>Make a Suggestion 🌸</h2>
+    <textarea id="suggestText" rows="6" placeholder="Write your suggestion here..."></textarea><br><br>
+    <button onclick="submitSuggestion()">Submit Suggestion</button>
 </div>
 
 <div class="footer">
-    Respectful discussion only.
+    Keep your suggestions calm, respectful, and reflective.
 </div>
 
 <script src="STYLE.js"></script>
@@ -29,17 +33,18 @@
 function submitSuggestion() {
     const text = document.getElementById("suggestText").value.trim();
 
-    if (text === "") {
+    if(text === "") {
         alert("Please write something before submitting.");
         return;
     }
 
-    if (containsBannedWords(text)) {
-        alert("Unethical or abusive language detected. Please revise.");
+    if(containsBannedWords(text)) {
+        alert("Unethical or abusive language detected. Please revise your message.");
         return;
     }
 
-    alert("Thank you for your thoughtful suggestion.");
+    // Gentle interaction feedback
+    alert("Thank you for sharing your suggestion 🌿");
     document.getElementById("suggestText").value = "";
 }
 </script>
