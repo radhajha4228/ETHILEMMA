@@ -6,21 +6,26 @@
 </head>
 <body>
 
+<h1>Ethilemma: Share Your Dilemma</h1>
+
 <div class="navbar">
     <a href="index.html">Home</a>
     <a href="dilemmas.html">Dilemmas</a>
+    <a href="suggest.html">Suggestions</a>
+</div>
+
+<div class="chapters">
+    <p>Pour down your ethical or social dilemma anonymously. Others can reflect and suggest respectfully.</p>
 </div>
 
 <div class="main-content">
-    <h2>Pour Down Your Dilemma</h2>
-    <p>There is no judgment here.</p>
-
-    <textarea id="dilemmaText" rows="6"></textarea><br><br>
-    <button onclick="submitDilemma()">Post Dilemma</button>
+    <h2>Submit a Dilemma 🌿</h2>
+    <textarea id="dilemmaText" rows="6" placeholder="Describe your dilemma here..."></textarea><br><br>
+    <button onclick="submitDilemma()">Submit Dilemma</button>
 </div>
 
 <div class="footer">
-    Thoughtful questions are welcome.
+    Reflect, share, and explore ideas peacefully.
 </div>
 
 <script src="STYLE.js"></script>
@@ -28,17 +33,17 @@
 function submitDilemma() {
     const text = document.getElementById("dilemmaText").value.trim();
 
-    if (text.length < 20) {
+    if(text.length < 20) {
         alert("Please explain your dilemma clearly (minimum 20 characters).");
         return;
     }
 
-    if (containsBannedWords(text)) {
-        alert("Please remove abusive or unethical language.");
+    if(containsBannedWords(text)) {
+        alert("Please remove unethical or abusive language before submitting.");
         return;
     }
 
-    alert("Your dilemma has been submitted respectfully.");
+    alert("Your dilemma has been submitted respectfully 🌸");
     document.getElementById("dilemmaText").value = "";
 }
 </script>
