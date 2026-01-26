@@ -5,22 +5,35 @@
     <link rel="stylesheet" href="mystylesheet.css">
 </head>
 <body>
-<h2>Select a Dilemma 🌸</h2>
-<select id="dilemmaSelect">
-    <option value="I am unsure if lying to protect my friend is okay.">I am unsure if lying to protect my friend is okay.</option>
-    <option value="Should I speak up about my colleague’s mistake even if it affects their promotion?">Should I speak up about my colleague’s mistake even if it affects their promotion?</option>
-</select>
+    <h2>Select a Dilemma 🌸</h2>
+<select id="dilemmaSelect"></select>
 
 <textarea id="suggestText" rows="6" placeholder="Write your suggestion here..."></textarea><br><br>
 <button onclick="submitSuggestion()">Submit Suggestion</button>
 
 <script>
-function submitSuggestion(){
-    const text = document.getElementById("suggestText").value.trim();
-    const dilemma_text = document.getElementById("dilemmaSelect").value;
+async function loadDilemmas(){
+    const res = await fetch("get_dilemmas.php");
+    const data = await res.json();
+    const select = document.getElementById("dilemmaSelect");
+    if(data.success){
+        data.dilemmas.forEach(d => {
+            const option = document.createElement("option");
+            option.value = d.id;
+            option.textContent = d.text.length>60 ? d.text.substring(0,60)+"..." : d.text;
+            select.appendChild(option);
+        });
+    } else {
+        alert("Failed to load dilemmas.");
+    }
+}
 
+async function submitSuggestion(){
+    const text = document.getElementById("suggestText").value.trim();
+    const dilemma_id = document.getElementById("dilemmaSelect").value;
+    
     if(text.length < 5){
-        alert("Suggestion too short.");
+        alert("Please write a proper suggestion (min 5 chars).");
         return;
     }
     if(containsBannedWords(text)){
@@ -28,18 +41,20 @@ function submitSuggestion(){
         return;
     }
 
-    fetch("submit_suggestion.php", {
+    const formData = new URLSearchParams();
+    formData.append("text",text);
+    formData.append("dilemma_id",dilemma_id);
+
+    const res = await fetch("submit_suggestion.php",{
         method:"POST",
-        headers: {"Content-Type":"application/x-www-form-urlencoded"},
-        body: `text=${encodeURIComponent(text)}&dilemma_text=${encodeURIComponent(dilemma_text)}`
-    })
-    .then(res=>res.json())
-    .then(data=>{
-        alert(data.message);
-        if(data.success) document.getElementById("suggestText").value="";
-    })
-    .catch(()=>alert("Submission failed. Try again later."));
+        body: formData
+    });
+    const result = await res.json();
+    alert(result.message);
+    if(result.success) document.getElementById("suggestText").value = "";
 }
-</script>
+
+window.onload = loadDilemmas;
+       </script>
 </body>
 </html>
