@@ -3,7 +3,7 @@ body {
     font-family: Arial, "Times New Roman", serif;
     margin: 0;
     padding: 0;
-    background: linear-gradient(to bottom right, #E6E6FA, #FFF0F5, #FFFACD); /* Lavender + Blush + Pale Yellow */
+    background-image: linear-gradient(to bottom right, #E6E6FA, #FFF0F5, #FFFACD),url('background.jpg'); /* Lavender + Blush + Pale Yellow */
     color: #3A3A3A;
     overflow-x: hidden;
 }
@@ -113,5 +113,6 @@ button:hover {
         transform: translateY(0);
     }
 } 
+
 
 
