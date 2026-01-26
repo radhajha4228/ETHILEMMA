@@ -1,16 +1,34 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Ethilemma | Suggestions</title>
+    <meta charset="UTF-8">
+    <title>Ethilemma | Suggestiins</title>
     <link rel="stylesheet" href="mystylesheet.css">
 </head>
 <body>
+    <h1>Ethilemma: Share Your Opinion🌿</h1>
+
+    <!-- Navbar -->
+    <div class="navbar">
+        <a href="index.html">Home</a>
+        <a href="dilemmas.html">Dilemmas</a>
+        <a href="suggest.html">Suggestions</a>
+        <a href="feedback.html">Feedback</a>
+        <a href="contact.html">Contact</a>
+        <a href="material.html">Materials</a>
+    </div>
+
+    <div class="chapters">
+        <p>Put down your suggestion and opinions respectfully</p>
+    </div>
+<body>
+    <div class="main-content">
     <h2>Select a Dilemma 🌸</h2>
 <select id="dilemmaSelect"></select>
 
 <textarea id="suggestText" rows="6" placeholder="Write your suggestion here..."></textarea><br><br>
 <button onclick="submitSuggestion()">Submit Suggestion</button>
-
+    </div>div>
 <script>
 async function loadDilemmas(){
     const res = await fetch("get_dilemmas.php");
