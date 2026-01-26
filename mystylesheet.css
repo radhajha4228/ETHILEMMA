@@ -46,7 +46,7 @@ body {
 /* Main Content */
 .main-content {
     padding: 30px;
-    background-color: #d1cfe2;
+    background-color: #808000
     border-radius: 30px;
     animation: fadeIn 4s ease-in;
 }
@@ -94,6 +94,7 @@ body {
     0% { transform: translateY(100%); }
     100% { transform: translateY(0); }
 }
+
 
 
 
