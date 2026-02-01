@@ -1,21 +1,45 @@
 <?php
-header('Content-Type: application/json; charset=utf-8');
+header("Content-Type: application/json");
 
-$file = 'dilemmas.csv';
-if(!file_exists($file)){
-    echo json_encode(["success"=>false,"message"=>"Dilemma file not found."]);
+if ($_SERVER["REQUEST_METHOD"] !== "POST") {
+    echo json_encode([
+        "success" => false,
+        "message" => "Invalid request"
+    ]);
     exit;
 }
 
-$dilemmas = [];
-if(($handle = fopen($file,"r")) !== false){
-    $first = true;
-    while(($data = fgetcsv($handle)) !== false){
-        if($first){ $first = false; continue; } // skip header
-        $dilemmas[] = ["id"=>$data[0],"text"=>$data[1]];
-    }
-    fclose($handle);
+$text = trim($_POST["text"] ?? "");
+
+if (strlen($text) < 20) {
+    echo json_encode([
+        "success" => false,
+        "message" => "Dilemma too short"
+    ]);
+    exit;
 }
 
-echo json_encode(["success"=>true,"dilemmas"=>$dilemmas]);
-?>
+$file = "dilemmas.csv";
+
+// create file if not exists
+if (!file_exists($file)) {
+    file_put_contents($file, "id,dilemma,submitted_at\n");
+}
+
+// generate ID
+$id = time();
+$date = date("Y-m-d H:i:s");
+
+// escape quotes for CSV
+$text = str_replace('"', '""', $text);
+
+// format CSV row
+$row = "\"$id\",\"$text\",\"$date\"\n";
+
+// write to file
+file_put_contents($file, $row, FILE_APPEND | LOCK_EX);
+
+echo json_encode([
+    "success" => true,
+    "message" => "Dilemma submitted successfully"
+]);
