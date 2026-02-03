@@ -1,0 +1,77 @@
+<?php
+// Database Connection
+$conn = mysqli_connect(“localhost”, “root”, “”, “ethilemma”);
+
+// Security check: You can later add a login system here
+$feedback_query = “SELECT * FROM feedback ORDER BY submitted_at DESC”;
+$result = mysqli_query($conn, $feedback_query);
+?>
+
+<!DOCTYPE html>
+<html lang=”en”>
+<head>
+    <meta charset=”UTF-8”>
+    <title>Ethilemma | Admin Dashboard</title>
+    <link rel=”stylesheet” href=https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css>
+    <style>
+        Body { font-family: ‘Segoe UI’, sans-serif; background: #f4f7f6; margin: 0; padding: 40px; }
+        .admin-container { max-width: 1000px; margin: auto; background: white; padding: 30px; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
+        
+        Header { border-bottom: 2px solid #333; margin-bottom: 30px; padding-bottom: 10px; display: flex; justify-content: space-between; align-items: center; }
+        H2 { margin: 0; color: #333; text-transform: uppercase; letter-spacing: 1px; }
+        
+        Table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+        Th { background: #333; color: white; text-align: left; padding: 12px; }
+        Td { padding: 12px; border-bottom: 1px solid #eee; color: #444; }
+        Tr:hover { background: #f9f9f9; }
+
+        .rating-stars { color: #f1c40f; font-size: 0.9rem; }
+        .date { font-size: 0.8rem; color: #888; }
+        .badge { background: #e8f5e9; color: #2e7d32; padding: 4px 8px; border-radius: 4px; font-size: 0.75rem; font-weight: bold; }
+    </style>
+</head>
+<body>
+
+<div class=”admin-container”>
+    <header>
+        <h2><I class=”fas fa-user-shield”></i> Admin Feedback Portal</h2>
+        <span class=”badge”>Live Database</span>
+    </header>
+
+    <table>
+        <thead>
+            <tr>
+                <th>User</th>
+                <th>Rating</th>
+                <th>Message</th>
+                <th>Submitted On</th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php
+            If (mysqli_num_rows($result) > 0) {
+                While($row = mysqli_fetch_assoc($result)) {
+                    Echo “<tr>”;
+                    Echo “<td><strong>” . htmlspecialchars($row[‘user_name’]) . “</strong></td>”;
+                    Echo “<td class=’rating-stars’>”;
+                    // Display stars based on numeric rating
+                    For($i=1; $i<=$row[‘rating’]; $i++) echo “★”;
+                    Echo “</td>”;
+                    Echo “<td>” . htmlspecialchars($row[‘message’]) . “</td>”;
+                    Echo “<td class=’date’>” . date(‘M d, Y | H:I’, strtotime($row[‘submitted_at’])) . “</td>”;
+                    Echo “</tr>”;
+                }
+            } else {
+                Echo “<tr><td colspan=’4’ style=’text-align:center;’>No feedback received yet.</td></tr>”;
+            }
+            ?>
+        </tbody>
+    </table>
+    
+    <div style=”margin-top: 30px; text-align: right;”>
+        <a href=”index.html” style=”text-decoration: none; color: #666; font-size: 0.9rem;”><I class=”fas fa-arrow-left”></i> Back to Home</a>
+    </div>
+</div>
+
+</body>
+</html>
