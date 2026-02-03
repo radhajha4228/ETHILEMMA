@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Ethilemma | Feedback</title>
+    <link rel="stylesheet" href="mystylesheet.css">
+    <style>
+        .feedback-container {
+            max-width: 500px;
+            margin: 50px auto;
+            padding: 20px;
+            background: #fff;
+            border: 1px solid #ddd;
+        }
+        input, textarea, select {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            display: block;
+            box-sizing: border-box;
+        }
+        .btn {
+            background: #333;
+            color: white;
+            border: none;
+            padding: 10px;
+            cursor: pointer;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+
+<div class="navbar">
+    <a href="index.html">Home</a>
+    <a href="dilemmas.html">Dilemmas</a>
+    <a href="suggest.html">Suggestions</a>
+    <a href="materials.html">Materials</a>
+    <a href="feedback.html">Feedback</a>
+    <a href="contact.html">Contact</a>
+</div>
+
+<div class="main-content">
+    <h2>Feedback</h2>
+    <p>Please share your thoughts about the platform.</p>
+    
+    <div class="feedback-container">
+        <form action="process_feedback.php" method="POST">
+            <label>Name</label>
+            <input type="text" name="name" required>
+
+            <label>Rating</label>
+            <select name="rating">
+                <option value="5">5 - Excellent</option>
+                <option value="4">4 - Good</option>
+                <option value="3">3 - Average</option>
+                <option value="2">2 - Poor</option>
+                <option value="1">1 - Very Poor</option>
+            </select>
+
+            <label>Message</label>
+            <textarea name="message" rows="5" required></textarea>
+
+            <button type="submit" class="btn">Send Feedback</button>
+        </form>
+    </div>
+</div>
+
+<div class="footer">
+    © 2026 Ethilemma | All rights reserved
+</div>
+
+</body>
+</html>
+
